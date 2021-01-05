@@ -1,0 +1,8 @@
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\PipeCommuncation\obj\Debug\netstandard2.0\PipeCommuncation.AssemblyInfoInputs.cache
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\PipeCommuncation\obj\Debug\netstandard2.0\PipeCommuncation.AssemblyInfo.cs
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\PipeCommuncation\obj\Debug\netstandard2.0\PipeCommuncation.csproj.CoreCompileInputs.cache
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\PipeCommuncation\bin\Debug\netstandard2.0\PipeCommuncation.deps.json
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\PipeCommuncation\bin\Debug\netstandard2.0\PipeCommuncation.dll
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\PipeCommuncation\bin\Debug\netstandard2.0\PipeCommuncation.pdb
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\PipeCommuncation\obj\Debug\netstandard2.0\PipeCommuncation.dll
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\PipeCommuncation\obj\Debug\netstandard2.0\PipeCommuncation.pdb

@@ -1,0 +1,4 @@
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\PipeCommuncation\obj\Debug\netstandard1.0\PipeCommuncation.csprojAssemblyReference.cache
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\PipeCommuncation\obj\Debug\netstandard1.0\PipeCommuncation.AssemblyInfoInputs.cache
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\PipeCommuncation\obj\Debug\netstandard1.0\PipeCommuncation.AssemblyInfo.cs
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\PipeCommuncation\obj\Debug\netstandard1.0\PipeCommuncation.csproj.CoreCompileInputs.cache

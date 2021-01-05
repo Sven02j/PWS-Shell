@@ -1,0 +1,7 @@
+195 pixels
+35 p/block
+5 blocks
+5 * 35 = 175 for blocks
+20 for space
+4 spaces
+5 per space

@@ -1,0 +1,72 @@
+﻿Shell ToDo:
+- Manier vinden om UWP apps te starten, danwel via veel onderzoek doen en code opzoeken ofwel via een extern programma. Als dit niet lukt, probeer dan iets met Explorer AssociatedAccess. Alleen daarmee is het niet helemaal meer een shell... Anders wordt UWP gewoon niet ondersteund.
+- Zoekfunctie van bestanden afmaken. De hele computer naar keuze zoeken. Wat is de beste zoekmethode? Live-zoeken (dus, op het moment van zoeken de hele computer doorzoeken), of indexed-zoeken (op de achtergrond een service draaien, die constant indexeert waar alle bestanden zich bevinden.
+	Live-zoeken bespaart energie en processorkracht wanneer er niet gezocht wordt, maar is trager. Indexed-search is minder processor vriendelijk, maar wel een stuk sneller.
+- Bij lijst van alle apps, een preview geven wanneer er mappen getoond worden. (Zoals in android)
+- Achtergrondservice die het bureaublad op veranderingen controleert, en indien nodig deze opnieuw opbouwt.
+- Een menu maken waarmee apps anders opgestart kunnen worden. Zoals als administrator, andere gebruiker uitvoeren, het kan alle kanten op.
+	* Basisopties
+		- Werkmap
+		- Argumenten (ook een bestand, standaard ingevoerd als een bestand wordt gebruikt als alternatief openen)
+		- WindowStyle: Hidden, Maximized, Minimized, Normal
+		- Als administrator uitvoeren
+	* Geavanceerde opties
+		- Als andere gebruiker uitvoeren
+		- CPU Priority: IDLE, NORMAL, HIGH, REALTIME, ABOVENORMAL, BELOWNORMAL
+		- Restrict to certain cores / threads?
+		- Loggen van STDOUT / ERROUT naar een te kiezen bestand.
+		- Systeemresolutie aanpassen
+		- Shell-GUI tijdelijk inactief stellen
+		- Cursor aanpassen
+		- Systeembalk verwijderen
+		- Geforceerd centreren
+		- Kunstmatige achtergrond inzetten (impliceert Shel-GUI tijdelijk inactief stellen) - met één kleur of een afbeelding
+	* Debug-opties
+		- Geavanceerd app-traceer scherm openen [TRUE REQUIRED]
+		- Verversnelheid variabelen [0.1s, 0.5s, 1s, 3s]
+		- Ook STDOUT/ ERROUT loggen
+		- STDIN redirecten en box tonen.
+		- Geforceerd host-scherm verbergen (kan niet samen met window-host) -> Nuttig bij een console applicatie.
+	* Window-Host opties
+		- In een shell-window hosten [TRUE REQUIRED]
+		- Weergave modus in shell-window: Geforceerde maximalisatie, standaard maximalisatie, WIN7MODE, Window-in-Window
+		- Wacht met tonen tot InputIdle
+		- Aangepaste titel
+		- Aangepast pictogram
+		- TopMost
+		- BorderStyle shell-window: Default Sizeable, None
+	* Sandbox [APPCONTAINER] opties
+		- Starten in een AppContainer [TRUE REQUIRED]
+		- Rechten tot alle mapbestanden geven
+		- Rechten tot extra bestanden los opgeven
+		- Rechten tot extra (WINDOWS) mappen
+		- Sandboxnaam automatisch genereren / zelf opgeven
+		- Sandbox beschrijving automatisch genereren / zelf opgeven
+		- AppContainer rechten: [ALL / CHECKB: ..PrivateNetworkClientServer..., ...InternetClient..., ...InternetClientServer..., ...PicturesLibary..., ...VideosLibary..., ...MusicLibary..., ...DocumentsLibary..., ...SharedUserCertificates..., ...EnterpriseAuthentiation..., ...RemovableStorage...
+
+- Het Live-Informatie paneel aanpassen (uitbreiden). Dit paneel wordt geüpdatet als je met je muis over een ander programma beweegt.
+- Invoegen van standaard shell-functies:
+	* Het mogelijk maken om van wifi-netwerk / bedraad netwerk te wisselen (indien er wifi ondersteund is op het apparaat). En is het hierbij mogelijk om voorrang te krijgen op een wifi-netwerk / bekabeld netwerk?
+	* Tijd weergeven ergens in de shell, net als de datum
+	* Batterijniveau ergens weergeven, en of er opgeladen wordt (alleen als er een accu in zit uiteraard)
+	* Geluidsniveau ergens weergeven en deze ook kunnen aanpassen. Deze ook verbinden met de toetsenbord-knoppen die hierbij horen (alleen als hier een driver voor is)
+	* Helderheidsniveau van elk scherm weergeven, en deze ook kunnen aanpassen.
+	* De shell laten werken op meerdere beeldschermen, zodat ook dingen als helderheid per monitor specifiek aangepast kunnen worden.
+	* Een nette manier om de computer mee af te kunnen sluiten / slaapstand / alle andere functies hiervoor (kijk hiervoor in shutdown.exe)
+- Kunnen ShellNotifyIcons weergegeven worden, die door andere apps zijn gemaakt? Denk aan tray-icons op de taakbalk, als die van Steam.
+- Kan het Alt-Tab menu mooier worden gemaakt?
+- Zorgen dat het 'UpperShellPanel' bovenaan, die tijd weergeeft en een aantal andere handige functies, ook zichtbaar is bij gemaximaliseerde schermen. Daarna wellicht topmost maken? (Dus een form maken). Link naar een codeproject project staat hiervoor in het brainstorm document.
+- Een mooie plek om actieve apps weer te geven, zoals windows met de taakbalk zou doen?
+- Instellingen inbouwen, bijvoorbeeld om de achtergrondkleur / afbeelding / muziek aan te passen / thema's in het algemeen? En een link naar windows-instellingen.
+	Deze windows-instellingen werken mogelijk niet, omdat dit een UWP-app is. Wellicht kan alleen het configuratiescherm gebruik worden, en dan zal er een aparte module voor Windows-update gemaakt moeten worden. Het belangrijkste deel van deze updates is via .NET methoden te verkrijgen.
+- Voldoende koppelingen naar bepaalde windows-apps, zoals taakbeheer. Deze apps vallen niet onder de shell en zijn voor de gebruiker vaak een belangrijk onderdeel van windows. Daarom is het belangrijk dat de gebruiker ze op makkelijke plekken kan vinden.
+- Shell Link Format voor geavanceerde snelkoppelingen (App Container Sandbox, Sysmenu removen)
+- Bluetooth connecties
+- Opstartprogramma's aanzetten: maar ook ondersteunen uit de daadwerkelijke opstartmappen (fysiek op systeem)
+- Geluidslimiet instellen / waarschuwing voor wanneer oordopjes / koptelefoon tegen oorbeschadiging.
+- Prullenbak
+
+Andere:
+! Wanneer er genoeg tijd over is, kan er wellicht nog wat extra's bij komen. Zoals kleine, of grotere programma's.
+- Bestandsverkenner. Deze zou er ook in een kleine verkenner vorm bij kunnen komen, puur voor specifieke mappen. Wanneer deze verkenner echt helemaal gemaakt wordt, houd er dan rekening mee dat het standaard geen MTP- en PTP- protocol apparaten ondersteund, zoals telefoons. Dit kost tijd!
+[Niet-shell activiteiten hier neerzetten]

@@ -1,0 +1,9 @@
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\SettingsReaderWriter\obj\Debug\netstandard2.1\SettingsReaderWriter.csprojAssemblyReference.cache
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\SettingsReaderWriter\obj\Debug\netstandard2.1\SettingsReaderWriter.AssemblyInfoInputs.cache
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\SettingsReaderWriter\obj\Debug\netstandard2.1\SettingsReaderWriter.AssemblyInfo.cs
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\SettingsReaderWriter\obj\Debug\netstandard2.1\SettingsReaderWriter.csproj.CoreCompileInputs.cache
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\SettingsReaderWriter\bin\Debug\netstandard2.1\regsettings.deps.json
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\SettingsReaderWriter\bin\Debug\netstandard2.1\regsettings.dll
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\SettingsReaderWriter\bin\Debug\netstandard2.1\regsettings.pdb
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\SettingsReaderWriter\obj\Debug\netstandard2.1\regsettings.dll
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\SettingsReaderWriter\obj\Debug\netstandard2.1\regsettings.pdb

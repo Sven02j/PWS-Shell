@@ -6,3 +6,4 @@ C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\SettingsReaderWriter\obj\Debug\netst
 C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\SettingsReaderWriter\obj\Debug\netstandard2.0\SettingsReaderWriter.csproj.CoreCompileInputs.cache
 C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\SettingsReaderWriter\obj\Debug\netstandard2.0\regsettings.dll
 C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\SettingsReaderWriter\obj\Debug\netstandard2.0\regsettings.pdb
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\SettingsReaderWriter\obj\Debug\netstandard2.0\SettingsReaderWriter.csprojAssemblyReference.cache

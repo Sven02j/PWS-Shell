@@ -1,0 +1,15 @@
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\ShellSetup\bin\Debug\ShellSetup.exe.config
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\ShellSetup\bin\Debug\ShellSetup.exe.manifest
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\ShellSetup\bin\Debug\ShellSetup.application
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\ShellSetup\bin\Debug\ShellSetup.exe
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\ShellSetup\bin\Debug\ShellSetup.pdb
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\ShellSetup\obj\Debug\ShellSetup.csprojAssemblyReference.cache
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\ShellSetup\obj\Debug\ShellSetup.Properties.Resources.resources
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\ShellSetup\obj\Debug\ShellSetup.UI.resources
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\ShellSetup\obj\Debug\ShellSetup.csproj.GenerateResource.cache
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\ShellSetup\obj\Debug\ShellSetup.csproj.CoreCompileInputs.cache
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\ShellSetup\obj\Debug\ShellSetup.TrustInfo.xml
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\ShellSetup\obj\Debug\ShellSetup.exe.manifest
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\ShellSetup\obj\Debug\ShellSetup.application
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\ShellSetup\obj\Debug\ShellSetup.exe
+C:\Users\sven0\Desktop\SCHOOL\PWS\PWS-Shell\ShellSetup\obj\Debug\ShellSetup.pdb

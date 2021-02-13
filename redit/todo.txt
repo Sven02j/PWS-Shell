@@ -20,7 +20,7 @@
 		- Cursor aanpassen
 		- Systeembalk verwijderen
 		- Geforceerd centreren
-		- Kunstmatige achtergrond inzetten (impliceert Shel-GUI tijdelijk inactief stellen) - met één kleur of een afbeelding
+		- Kunstmatige achtergrond inzetten (impliceert Shell-GUI tijdelijk inactief stellen) - met één kleur of een afbeelding
 	* Debug-opties
 		- Geavanceerd app-traceer scherm openen [TRUE REQUIRED]
 		- Verversnelheid variabelen [0.1s, 0.5s, 1s, 3s]

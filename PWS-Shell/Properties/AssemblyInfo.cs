@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("Release")]
 [assembly: AssemblyCompany("Sven Jansen & Tycho Heijmans")]
 [assembly: AssemblyProduct("PWS-Shell")]
-[assembly: AssemblyCopyright("Sven Jansen & Tycho Heijmans ©  2020")]
+[assembly: AssemblyCopyright("Sven Jansen & Tycho Heijmans ©  2021")]
 [assembly: AssemblyTrademark("Sven Jansen & Tycho Heijmans")]
 [assembly: AssemblyCulture(null)]
 

@@ -160,4 +160,40 @@
   <data name="chargingBattery" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chargingBattery.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ethernet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ethernet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="network_error" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\network_error.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="no_network" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\no_network.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wifi_good" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wifi_good.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wifi_poor" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wifi_poor.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wifi_strong" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wifi_strong.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="wifi_weak" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\wifi_weak.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sound_mute" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sound mute.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="coghover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\coghover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="shutdownhover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shutdownhover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tools" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tools.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tools_hover" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tools_hover.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

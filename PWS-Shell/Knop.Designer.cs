@@ -96,6 +96,7 @@
             this.startenToolStripMenuItem.Name = "startenToolStripMenuItem";
             this.startenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.startenToolStripMenuItem.Text = "Starten";
+            this.startenToolStripMenuItem.Click += new System.EventHandler(this.startenToolStripMenuItem_Click);
             // 
             // alternatiefStartenToolStripMenuItem
             // 
@@ -121,12 +122,14 @@
             this.linkVerwijderenToolStripMenuItem.Name = "linkVerwijderenToolStripMenuItem";
             this.linkVerwijderenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.linkVerwijderenToolStripMenuItem.Text = "Link verwijderen";
+            this.linkVerwijderenToolStripMenuItem.Click += new System.EventHandler(this.linkVerwijderenToolStripMenuItem_Click);
             // 
             // naamWijzigenToolStripMenuItem
             // 
             this.naamWijzigenToolStripMenuItem.Name = "naamWijzigenToolStripMenuItem";
             this.naamWijzigenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.naamWijzigenToolStripMenuItem.Text = "Naam wijzigen";
+            this.naamWijzigenToolStripMenuItem.Click += new System.EventHandler(this.naamWijzigenToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -138,6 +141,7 @@
             this.verwijderenToolStripMenuItem.Name = "verwijderenToolStripMenuItem";
             this.verwijderenToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.verwijderenToolStripMenuItem.Text = "Verwijderen";
+            this.verwijderenToolStripMenuItem.Click += new System.EventHandler(this.verwijderenToolStripMenuItem_Click);
             // 
             // Knop
             // 

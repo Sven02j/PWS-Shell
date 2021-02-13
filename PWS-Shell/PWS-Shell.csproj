@@ -40,10 +40,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>A14E4BE029B1D634F2C08D75325DD697674E5284</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>2F54198408C13885B3573071B71DD9C6FB868B79</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Sven Jansen.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Sven Jansen &amp; Tycho Heijmans.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -67,14 +67,27 @@
     <Reference Include="Gma.System.MouseKeyHook, Version=5.6.130.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MouseKeyHook.5.6.0\lib\net40\Gma.System.MouseKeyHook.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.Win32.Registry, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Registry.5.0.0\lib\net461\Microsoft.Win32.Registry.dll</HintPath>
+    </Reference>
     <Reference Include="pipecom">
       <HintPath>..\PipeCommuncation\bin\Debug\netstandard2.0\pipecom.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="regsettings">
+      <HintPath>..\SettingsReaderWriter\bin\Debug\netstandard2.0\regsettings.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.5.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -107,6 +120,13 @@
     <Compile Include="BatteryDisplay.Designer.cs">
       <DependentUpon>BatteryDisplay.cs</DependentUpon>
     </Compile>
+    <Compile Include="BrightnessVolumeDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="BrightnessVolumeDisplay.Designer.cs">
+      <DependentUpon>BrightnessVolumeDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CheckImageFile.cs" />
     <Compile Include="FileDescriptions.cs" />
     <Compile Include="MonitorBrightness.cs" />
     <Compile Include="CustomFLP.cs">
@@ -138,6 +158,14 @@
     <Compile Include="Knop.Designer.cs">
       <DependentUpon>Knop.cs</DependentUpon>
     </Compile>
+    <Compile Include="MonitorMethods.cs" />
+    <Compile Include="NetworkDisplay.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NetworkDisplay.Designer.cs">
+      <DependentUpon>NetworkDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NetworkMethods.cs" />
     <Compile Include="OpacityOverlayStandalone.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,6 +189,7 @@
     <Compile Include="SearchControl.Designer.cs">
       <DependentUpon>SearchControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="SetShell.cs" />
     <Compile Include="ShellIconPainter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,6 +215,9 @@
     <EmbeddedResource Include="BatteryDisplay.resx">
       <DependentUpon>BatteryDisplay.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="BrightnessVolumeDisplay.resx">
+      <DependentUpon>BrightnessVolumeDisplay.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DateTimeControl.resx">
       <DependentUpon>DateTimeControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -197,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Knop.resx">
       <DependentUpon>Knop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NetworkDisplay.resx">
+      <DependentUpon>NetworkDisplay.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OpacityOverlayStandalone.resx">
       <DependentUpon>OpacityOverlayStandalone.cs</DependentUpon>
@@ -234,6 +269,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Sven Jansen &amp; Tycho Heijmans.pfx" />
     <None Include="Sven Jansen.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -246,6 +282,18 @@
     <None Include="Resources\102.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\tools_hover.png" />
+    <None Include="Resources\tools.png" />
+    <None Include="Resources\shutdownhover.png" />
+    <None Include="Resources\coghover.png" />
+    <None Include="Resources\sound mute.png" />
+    <None Include="Resources\wifi_weak.png" />
+    <None Include="Resources\wifi_strong.png" />
+    <None Include="Resources\wifi_poor.png" />
+    <None Include="Resources\wifi_good.png" />
+    <None Include="Resources\no_network.png" />
+    <None Include="Resources\network_error.png" />
+    <None Include="Resources\ethernet.png" />
     <None Include="Resources\chargingBattery.png" />
     <None Include="Resources\poorBattery.png" />
     <None Include="Resources\lowBattery.png" />

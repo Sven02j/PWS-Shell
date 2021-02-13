@@ -35,13 +35,11 @@
             // 
             // xIcon
             // 
-            this.xIcon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.xIcon.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.xIcon.BackColor = System.Drawing.Color.Transparent;
-            this.xIcon.Location = new System.Drawing.Point(0, 0);
+            this.xIcon.Location = new System.Drawing.Point(38, 43);
             this.xIcon.Name = "xIcon";
-            this.xIcon.Size = new System.Drawing.Size(64, 64);
+            this.xIcon.Size = new System.Drawing.Size(171, 162);
             this.xIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.xIcon.TabIndex = 0;
             this.xIcon.TabStop = false;
@@ -55,8 +53,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(64, 64);
+            this.BackColor = System.Drawing.Color.Gray;
+            this.ClientSize = new System.Drawing.Size(256, 256);
             this.Controls.Add(this.xIcon);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -66,10 +64,10 @@
             this.Opacity = 0D;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "ShellIconPainter";
             this.TopMost = true;
-            this.TransparencyKey = System.Drawing.Color.WhiteSmoke;
+            this.TransparencyKey = System.Drawing.Color.Gray;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ShellIconPainter_FormClosing);
             this.Load += new System.EventHandler(this.ShellIconPainter_Load);
             ((System.ComponentModel.ISupportInitialize)(this.xIcon)).EndInit();

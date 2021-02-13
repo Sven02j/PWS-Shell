@@ -31,7 +31,7 @@ namespace PWS_Shell
             }
         }
 
-        private static string[] GetTargetLocation(string lnkFile)
+        internal static string[] GetTargetLocation(string lnkFile)
         {
             string tar = GetShortcutTargetFile(lnkFile);
             string darwindatablock = "NONE";

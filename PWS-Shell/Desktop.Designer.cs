@@ -61,8 +61,7 @@
             this.Name = "Desktop";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Activated += new System.EventHandler(this.Desktop_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Desktop_FormClosing);
             this.Load += new System.EventHandler(this.Desktop_Load);

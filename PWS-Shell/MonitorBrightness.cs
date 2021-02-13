@@ -82,6 +82,28 @@ namespace PWS_Shell
             }
         }
 
+        public static int GetCurrentMonitorBrightness()
+        {
+            try
+            {
+                ManagementScope scope = new ManagementScope("\\\\.\\ROOT\\WMI");
+                ObjectQuery query = new ObjectQuery("SELECT * FROM WmiMonitorBrightness");
+                ManagementObjectSearcher searcher = new ManagementObjectSearcher(scope, query);
+                ManagementObjectCollection queryCollection = searcher.Get();
+
+                foreach (ManagementObject m in queryCollection)
+                {
+                    return Convert.ToInt32(m["CurrentBrightness"]);
+                }
+
+                return -1;
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+
         public void StopWatching()
         {
             Watcher.Stop();

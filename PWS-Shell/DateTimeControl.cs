@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -11,6 +12,9 @@ namespace PWS_Shell
             InitializeComponent();
 
             BackColor = Color.Transparent;
+            dateLabel.Click += timeLabel_Click;
+            Click += timeLabel_Click;
+            this.Cursor = Cursors.Hand;
         }
 
         internal void TimeDateUpdate()
@@ -43,6 +47,17 @@ namespace PWS_Shell
         {
             // Optioneel maken om datum te tonen.
             dateLabel.Text = $"{DateTime.Now.Day}-{DateTime.Now.Month}-{DateTime.Now.Year}";
+        }
+
+        private void timeLabel_Click(object sender, EventArgs e)
+        {
+            ProcessStartInfo psi = new ProcessStartInfo()
+            {
+                FileName = "control.exe",
+                Arguments = "timedate.cpl"
+            };
+
+            Process.Start(psi);
         }
     }
 }

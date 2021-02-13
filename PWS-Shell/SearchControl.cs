@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using System.IO;
 using static PWS_Shell.ExtractImages;
+using System.Linq;
 
 namespace PWS_Shell
 {
@@ -34,6 +35,13 @@ namespace PWS_Shell
         public SearchControl()
         {
             InitializeComponent();
+        }
+
+        public SearchControl(int MonitorNumber)
+        {
+            InitializeComponent();
+
+            MonitorMethods.DisplayFullAtMonitor(MonitorNumber, this);
 
             searchBox.inputBox.TextChanged += InputBox_TextChanged;
 
@@ -92,8 +100,16 @@ namespace PWS_Shell
 
             List<string[]> found = new List<string[]>();
 
-            foreach (string dir in Directory.GetDirectories(userProfile))
+            List<string> directories = Directory.GetDirectories(userProfile).ToList();
+            directories.Add(Environment.GetFolderPath(Environment.SpecialFolder.StartMenu));
+            directories.Add(Environment.GetFolderPath(Environment.SpecialFolder.CommonStartMenu));
+            directories.Add(Environment.GetFolderPath(Environment.SpecialFolder.CommonDesktopDirectory));
+
+            foreach (string dir in directories)
             {
+                if (dir.EndsWith("AppData"))
+                    continue;
+
                 if (!Path.GetFileName(dir).StartsWith("."))
                 {
                     DirectoryInfo di = new DirectoryInfo(dir);
@@ -113,11 +129,6 @@ namespace PWS_Shell
                 if (searchFunction.CancellationPending)
                     return false;
 
-                foreach (string[] f in found)
-                {
-                    Console.WriteLine($"OUT: {f[0]}");
-                }
-
                 this.InvokeEx(g => g.listUpdate(found));
                 found.Clear();
 
@@ -133,26 +144,16 @@ namespace PWS_Shell
 
                     if (!File.GetAttributes(fil).HasFlag(FileAttributes.Hidden))
                     {
-                        if (Path.GetFileName(fil).Contains(searchWord))
+                        if (Path.GetFileName(fil).ToLower().Contains(searchWord.ToLower()))
                             found.Add(new string[] { fil, "File" });
                     }
                 }
 
-                /*
-                foreach (string dir in Directory.GetDirectories(folder, "*", SearchOption.TopDirectoryOnly))
+                foreach (string dir in GetFolders(folder, "*"))
                 {
-                    if (!Path.GetFileName(dir).StartsWith("."))
-                    {
-                        DirectoryInfo dInfo = new DirectoryInfo(dir);
-
-                        if ((dInfo.Attributes & FileAttributes.Hidden) != 0)
-                        {
-                            if (Path.GetFileName(dir).Contains(searchWord))
-                                found.Add(new string[] { dir, "Directory" });
-                        }
-                    }
+                    if (Path.GetFileName(dir).ToLower().Contains(searchWord.ToLower()))
+                        found.Add(new string[] { dir, "Directory" });
                 }
-                */
 
                 return true;
             }
@@ -171,6 +172,7 @@ namespace PWS_Shell
                 };
 
                 temp.SubItems.Add(result[0]);
+                temp.Tag = result[1];
 
                 index = items.Items.Count;
 
@@ -193,8 +195,6 @@ namespace PWS_Shell
 
         private void searchFunction_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            Console.WriteLine("enumeration finished.");
-
             if (isRequest)
             {
                 items.Items.Clear();
@@ -228,6 +228,30 @@ namespace PWS_Shell
             }
         }
 
+        public static IEnumerable<string> GetFolders(string root, string searchPattern)
+        {
+            Stack<string> pending = new Stack<string>();
+            pending.Push(root);
+            while (pending.Count != 0)
+            {
+                var path = pending.Pop();
+                string[] next = null;
+                try
+                {
+                    next = Directory.GetDirectories(path, searchPattern);
+                }
+                catch { }
+                if (next != null && next.Length != 0)
+                    foreach (var file in next) yield return file;
+                try
+                {
+                    next = Directory.GetDirectories(path);
+                    foreach (var subdir in next) pending.Push(subdir);
+                }
+                catch { }
+            }
+        }
+
         private void SearchControl_Click(object sender, EventArgs e)
         {
             Close();
@@ -237,6 +261,99 @@ namespace PWS_Shell
         {
             Close();
         }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void exitButton_MouseEnter(object sender, EventArgs e)
+        {
+            exitButton.ForeColor = Color.White;
+        }
+
+        private void exitButton_MouseLeave(object sender, EventArgs e)
+        {
+            exitButton.ForeColor = Color.WhiteSmoke;
+        }
+
+        private void exitButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            exitButton.ForeColor = Color.OrangeRed;
+        }
+
+        private void SearchControl_Click_1(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void items_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ListViewItem item = GetItemFromPoint(Cursor.Position);
+
+            if (item != null)
+            {
+                ProcessStarter.Start(new AppLink(LinkType.Normal, item.SubItems[1].Text));
+            }
+        }
+
+        private ListViewItem GetItemFromPoint(Point mousePosition)
+        {
+            // translate the mouse position from screen coordinates to 
+            // client coordinates within the given ListView
+            Point localPoint = items.PointToClient(mousePosition);
+            return items.GetItemAt(localPoint.X, localPoint.Y);
+        }
+
+        private void openenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (items.SelectedItems.Count > 0)
+            {
+                ProcessStarter.Start(new AppLink(LinkType.Normal, items.SelectedItems[0].SubItems[1].Text));
+            }
+        }
+
+        private void bestandslocatieOpenenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (items.SelectedItems.Count > 0)
+            {
+                ShortcutLocationHandler.SelectFile(items.SelectedItems[0].SubItems[1].Text);
+            }
+        }
+
+        private void alternatiefStartenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (items.SelectedItems.Count > 0)
+            {
+                switch (items.SelectedItems[0].Tag.ToString())
+                {
+                    case "File":
+                        RelativeAppStarter.StartRelativeApp("PWS-Shell.exe", $"\"-AltStart:{items.SelectedItems[0].SubItems[1].Text}\"", false);
+                        break;
+                }
+            }
+        }
+
+        private void resultStrip_Opening(object sender, CancelEventArgs e)
+        {
+            if (items.SelectedItems.Count == 0)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                if (items.SelectedItems[0].Tag.ToString() == "Directory")
+                {
+                    alternatiefStartenToolStripMenuItem.Visible = false;
+                    toolStripMenuItem1.Visible = false;
+                }
+                else
+                {
+                    alternatiefStartenToolStripMenuItem.Visible = true;
+                    toolStripMenuItem1.Visible = true;
+                }
+            }
+        }
     }
 
     public static class ISynchronizeInvokeExtensions
@@ -245,11 +362,25 @@ namespace PWS_Shell
         {
             if (@this.InvokeRequired)
             {
-                @this.Invoke(action, new object[] { @this });
+                try
+                {
+                    @this.Invoke(action, new object[] { @this });
+                }
+                catch
+                {
+
+                }
             }
             else
             {
-                action(@this);
+                try
+                {
+                    action(@this);
+                }
+                catch
+                {
+
+                }
             }
         }
     }

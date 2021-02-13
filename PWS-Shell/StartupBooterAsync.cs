@@ -25,13 +25,16 @@ namespace PWS_Shell
         private static void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             RegistryKey disabled = (Registry.Users).OpenSubKey($@"{SID}\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run");
+            RegistryKey disabled2 = (Registry.Users).OpenSubKey($@"{SID}\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\StartupFolder");
 
             Console.WriteLine(SID);
 
             // Dit lijkt niet voor alle apps te werken... maar, dit kan fout gemeten zijn.
             string[] unallowed = disabled.GetValueNames();
+            string[] unallowed2 = disabled2.GetValueNames();
 
             disabled.Close();
+            disabled2.Close();
 
             // kijken naar RunOnceEx??? Ook eventueel 32-bit gebruikeropstartprocessen, ook al bestaan ze niet. Ze zouden ergens anders wel kunnen bestaan.
 
@@ -62,6 +65,30 @@ namespace PWS_Shell
                 ProcessRegistryKey(ref globalStartupONCE32, true, unallowed);
             if (userStartupONCE != null)
                 ProcessRegistryKey(ref userStartupONCE, true, unallowed);
+
+            string[] startupDirs = new string[] { Environment.GetFolderPath(Environment.SpecialFolder.Startup), Environment.GetFolderPath(Environment.SpecialFolder.CommonStartup)};
+
+            foreach (string dir in startupDirs)
+            {
+                foreach (string file in SearchControl.GetFiles(dir, "*"))
+                {
+                    if (Path.GetFileName(file.ToLower()) == "desktop.ini" || Path.GetFileName(file.ToLower()) == "thumbs.db")
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        if (unallowed2.ToList().FindIndex(x => x.Equals(Path.GetFileName(file), StringComparison.OrdinalIgnoreCase)) != -1)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            Process.Start(file);
+                        }
+                    }
+                }
+            }
         }
 
         private static void ProcessRegistryKey(ref RegistryKey key, bool RunONCE, string[] unallowed)

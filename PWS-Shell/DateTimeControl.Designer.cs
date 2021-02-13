@@ -44,6 +44,7 @@
             this.timeLabel.TabIndex = 0;
             this.timeLabel.Text = "xx:xx:xx";
             this.timeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.timeLabel.Click += new System.EventHandler(this.timeLabel_Click);
             // 
             // dateLabel
             // 

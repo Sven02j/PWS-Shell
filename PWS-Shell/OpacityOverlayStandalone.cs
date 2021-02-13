@@ -28,6 +28,13 @@ namespace PWS_Shell
             InitializeComponent();
         }
 
+        public OpacityOverlayStandalone(int ScreenNumber)
+        {
+            InitializeComponent();
+
+            MonitorMethods.DisplayFullAtMonitor(ScreenNumber, this);
+        }
+
         internal void FormProjection(Form Project)
         {
             SetProjection(Project);

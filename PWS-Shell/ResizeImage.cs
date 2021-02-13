@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Imaging;
 
 namespace PWS_Shell
@@ -62,6 +63,24 @@ namespace PWS_Shell
             grPhoto.Dispose();
             imgPhoto.Dispose();
             return bmPhoto;
+        }
+
+        internal static Image CreateThumbnail(Image i, int dMaxSize)
+        {
+            int dWidth = i.Width;
+            int dHeight = i.Height;
+
+            if (dWidth > dMaxSize)
+            {
+                dHeight = (dHeight * dMaxSize) / dWidth;
+                dWidth = dMaxSize;
+            }
+            if (dHeight > dMaxSize)
+            {
+                dWidth = (dWidth * dMaxSize) / dHeight;
+                dHeight = dMaxSize;
+            }
+            return i.GetThumbnailImage(dWidth, dHeight, delegate () { return false; }, IntPtr.Zero);
         }
     }
 }

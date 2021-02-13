@@ -28,11 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.transInfoPanel = new System.Windows.Forms.Panel();
             this.infoLabel = new System.Windows.Forms.Label();
             this.allAppsButton = new System.Windows.Forms.Button();
             this.UpPanel = new PWS_Shell.UpperShellPanel();
+            this.noAppStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.vernieuwenStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.linkToevoegenStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.mapAanmakenStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.transInfoPanel.SuspendLayout();
+            this.noAppStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // transInfoPanel
@@ -80,6 +86,38 @@
             this.UpPanel.TabIndex = 3;
             this.UpPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.UpPanel_Paint);
             // 
+            // noAppStrip
+            // 
+            this.noAppStrip.BackColor = System.Drawing.Color.Black;
+            this.noAppStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.vernieuwenStrip,
+            this.linkToevoegenStrip,
+            this.mapAanmakenStrip});
+            this.noAppStrip.Name = "appStrip";
+            this.noAppStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.noAppStrip.Size = new System.Drawing.Size(157, 70);
+            // 
+            // vernieuwenStrip
+            // 
+            this.vernieuwenStrip.Name = "vernieuwenStrip";
+            this.vernieuwenStrip.Size = new System.Drawing.Size(156, 22);
+            this.vernieuwenStrip.Text = "Vernieuwen";
+            this.vernieuwenStrip.Click += new System.EventHandler(this.vernieuwenStrip_Click);
+            // 
+            // linkToevoegenStrip
+            // 
+            this.linkToevoegenStrip.Name = "linkToevoegenStrip";
+            this.linkToevoegenStrip.Size = new System.Drawing.Size(156, 22);
+            this.linkToevoegenStrip.Text = "Link toevoegen";
+            this.linkToevoegenStrip.Click += new System.EventHandler(this.linkToevoegenStrip_Click);
+            // 
+            // mapAanmakenStrip
+            // 
+            this.mapAanmakenStrip.Name = "mapAanmakenStrip";
+            this.mapAanmakenStrip.Size = new System.Drawing.Size(156, 22);
+            this.mapAanmakenStrip.Text = "Map aanmaken";
+            this.mapAanmakenStrip.Click += new System.EventHandler(this.mapAanmakenStrip_Click);
+            // 
             // DesktopControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -91,6 +129,7 @@
             this.Name = "DesktopControl";
             this.Size = new System.Drawing.Size(772, 428);
             this.transInfoPanel.ResumeLayout(false);
+            this.noAppStrip.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -99,6 +138,10 @@
         private System.Windows.Forms.Panel transInfoPanel;
         private System.Windows.Forms.Button allAppsButton;
         private System.Windows.Forms.Label infoLabel;
-        private UpperShellPanel UpPanel;
+        internal UpperShellPanel UpPanel;
+        private System.Windows.Forms.ContextMenuStrip noAppStrip;
+        private System.Windows.Forms.ToolStripMenuItem vernieuwenStrip;
+        private System.Windows.Forms.ToolStripMenuItem linkToevoegenStrip;
+        private System.Windows.Forms.ToolStripMenuItem mapAanmakenStrip;
     }
 }

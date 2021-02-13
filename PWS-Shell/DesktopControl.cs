@@ -3,8 +3,8 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Reflection;
 using System.Diagnostics;
+using Microsoft.VisualBasic;
 
 namespace PWS_Shell
 {
@@ -16,6 +16,8 @@ namespace PWS_Shell
         private ShellBrowserLocation shellBrowserLocation = ShellBrowserLocation.Desktop;
         private bool isStartMenuRoot = false;
         private bool tempStorage;
+
+        private string[] dirs = FolderCollection.DesktopView().directories;
 
         private InfoPanelHelper infoPanelHelper;
         
@@ -37,34 +39,74 @@ namespace PWS_Shell
             infoLabel.BackColor = Color.FromArgb(0, Color.Black);
 
             UpPanel.Parent = this;
-            UpPanel.BackColor = Color.FromArgb(150, Color.Black);
+            UpPanel.BackColor = Color.FromArgb(175, Color.DarkGray);
 
             infoPanelHelper = new InfoPanelHelper();
+
+            foreach (ToolStripItem item in noAppStrip.Items)
+            {
+                item.BackColor = Color.Black;
+                item.ForeColor = Color.White;
+            }
+        }
+
+        internal void BindNoAppContext()
+        {
+            Icons.MouseDown += Icons_MouseDown;
+        }
+
+        private void Icons_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                noAppStrip.Show(Cursor.Position);
+            }
         }
 
         internal List<Knop> GetButtons(FolderCollection collection)
         {
             tempStorage = collection.isStartMenuRoot;
-            List<string> linkPaths = new List<string>();
+            List<string> linkPathsTemp = new List<string>();
+            List<string> linkPathsShort = new List<string>();
+            List<string> linkPathsSorted = new List<string>();
 
             foreach (string directoryToEnumerate in collection.directories)
             {
                 foreach (string file in Directory.GetFiles(directoryToEnumerate))
                 {
                     if (!File.GetAttributes(file).HasFlag(FileAttributes.Hidden))
-                        linkPaths.Add(file);
+                        linkPathsTemp.Add(file);
                 }
 
                 foreach (string folder in Directory.GetDirectories(directoryToEnumerate))
                 {
                     if (!File.GetAttributes(folder).HasFlag(FileAttributes.Hidden))
-                        linkPaths.Add(folder);
+                        linkPathsTemp.Add(folder);
+                }
+            }
+
+            foreach (string path in linkPathsTemp)
+            {
+                linkPathsShort.Add(Path.GetFileName(path));
+            }
+
+            linkPathsShort.Sort();
+
+            foreach (string shor in linkPathsShort)
+            {
+                foreach (string item in linkPathsTemp)
+                {
+                    if (item.EndsWith(shor))
+                    {
+                        linkPathsSorted.Add(item);
+                        break;
+                    }
                 }
             }
 
             List<Knop> knoppen = new List<Knop>();
 
-            foreach (string path in linkPaths)
+            foreach (string path in linkPathsSorted)
             {
                 Knop knop = new Knop();
                 knop.KnopMaken(AppLink.GetLinkObject(path));
@@ -124,73 +166,76 @@ namespace PWS_Shell
 
         private void Knop_AppAboutToStart(AppLink appLink)
         {
-            string ext = Path.GetExtension(appLink.linkData);
-            string endLocation = "";
-            string darwinDataBlock = "";
+            if (File.Exists(appLink.linkData) || Directory.Exists(appLink.linkData))
+            {
+                string ext = Path.GetExtension(appLink.linkData);
+                string endLocation = "";
+                string darwinDataBlock = "";
 
-            if (ext != ".lnk")
-            {
-                endLocation = appLink.linkData;
-            }
-            else
-            {
-                int index = 0;
-                foreach (string tmData in ShortcutLocationHandler.GetShortcutLocation(appLink.linkData))
+                if (ext != ".lnk")
                 {
-                    if (index == 0)
-                    {
-                        if (tmData.StartsWith("ERR:"))
-                        {
-                            endLocation = appLink.linkData;
-                        }
-                        else if (tmData.StartsWith("NOR:") || tmData.StartsWith("ADV:"))
-                        {
-                            endLocation = tmData.Substring(4);
-                        }
-                    }
-                    else
-                    {
-                        darwinDataBlock = tmData;
-                    }
-
-                    index++;
+                    endLocation = appLink.linkData;
                 }
-            }
-
-            string link;
-            string type;
-
-            if (ext == ".lnk")
-            {
-                link = Path.GetFileNameWithoutExtension(appLink.linkData);
-                type = FileDescriptions.GetFileTypeDescription(endLocation);
-            }
-            else if (Directory.Exists(endLocation))
-            {
-                link = Path.GetFileName(appLink.linkData);
-                type = "Bestandsmap";
-            }
-            else
-            {
-                link = Path.GetFileName(appLink.linkData);
-                type = FileDescriptions.GetFileTypeDescription(endLocation);
-            }
-
-            infoPanelHelper.Clear();
-            infoPanelHelper.AddInformation("Naam", link);
-            infoPanelHelper.AddInformation("Type", type);
-
-            if (type != "Bestandsmap")
-            {
-                string AssemblyTitle = FileVersionInfo.GetVersionInfo(endLocation).FileDescription;
-
-                if (!string.IsNullOrWhiteSpace(AssemblyTitle))
+                else
                 {
-                    infoPanelHelper.AddInformation("Titel", AssemblyTitle);
-                }
-            }
+                    int index = 0;
+                    foreach (string tmData in ShortcutLocationHandler.GetShortcutLocation(appLink.linkData))
+                    {
+                        if (index == 0)
+                        {
+                            if (tmData.StartsWith("ERR:"))
+                            {
+                                endLocation = appLink.linkData;
+                            }
+                            else if (tmData.StartsWith("NOR:") || tmData.StartsWith("ADV:"))
+                            {
+                                endLocation = tmData.Substring(4);
+                            }
+                        }
+                        else
+                        {
+                            darwinDataBlock = tmData;
+                        }
 
-            infoLabel.Text = infoPanelHelper.Get();
+                        index++;
+                    }
+                }
+
+                string link;
+                string type;
+
+                if (Path.GetExtension(endLocation) == ".lnk")
+                {
+                    link = Path.GetFileNameWithoutExtension(appLink.linkData);
+                    type = FileDescriptions.GetFileTypeDescription(endLocation);
+                }
+                else if (Directory.Exists(endLocation))
+                {
+                    link = Path.GetFileName(appLink.linkData);
+                    type = "Bestandsmap";
+                }
+                else
+                {
+                    link = Path.GetFileName(appLink.linkData);
+                    type = FileDescriptions.GetFileTypeDescription(endLocation);
+                }
+
+                infoPanelHelper.Clear();
+                infoPanelHelper.AddInformation("Naam", link);
+                infoPanelHelper.AddInformation("Type", type);
+
+                if (type != "Bestandsmap")
+                {
+                    string AssemblyTitle = FileVersionInfo.GetVersionInfo(endLocation).FileDescription;
+
+                    if (!string.IsNullOrWhiteSpace(AssemblyTitle))
+                    {
+                        infoPanelHelper.AddInformation("Titel", AssemblyTitle);
+                    }
+                }
+
+                infoLabel.Text = infoPanelHelper.Get();
+            }
         }
 
         private void BestandKnop_Click(object sender, EventArgs e)
@@ -234,6 +279,7 @@ namespace PWS_Shell
         private void Invoker(FolderCollection folcollection)
         {
             ModeSwitchEventHandler handler = ModeSwitch;
+            dirs = folcollection.directories;
             handler.Invoke(folcollection);
         }
 
@@ -247,6 +293,99 @@ namespace PWS_Shell
         private void UpPanel_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.DrawLine(Pens.Transparent, 0, 0, 100, 100);
+        }
+
+        internal void HideMainComponents()
+        {
+            infoLabel.Visible = false;
+            allAppsButton.Visible = false;
+            transInfoPanel.Visible = false;
+        }
+
+        private void vernieuwenStrip_Click(object sender, EventArgs e)
+        {
+            switch (shellBrowserLocation)
+            {
+                // shellBrowserLocation is de locatie die nog veranderd wordt! Dus als deze nu nog 'Desktop' is, wordt die straks 'StartMenu'.
+                case ShellBrowserLocation.Desktop:
+                    Invoker(FolderCollection.DesktopView());
+                    break;
+                case ShellBrowserLocation.StartMenu:
+                    Invoker(FolderCollection.StartMenuView());
+                    break;
+                case ShellBrowserLocation.StartMenuSubFolder:
+                    allAppsButton.Startscherm();
+                    Invoker(FolderCollection.StartMenuView());
+                    break;
+            }
+        }
+
+        private void linkToevoegenStrip_Click(object sender, EventArgs e)
+        {
+            if (dirs.Length > 0)
+            {
+                OpenFileDialog of = new OpenFileDialog()
+                {
+                    InitialDirectory = FolderCollection.StartMenuView().directories[0],
+                    Filter = "Snelkoppelingen (*.lnk)|*.lnk",
+                    Title = "Selecteer link om op het scherm te plaatsen",
+                    DereferenceLinks = false,
+                    DefaultExt = ".lnk",
+                    Multiselect = false,
+                    FilterIndex = 0,
+                    SupportMultiDottedExtensions = true
+                };
+
+                if (shellBrowserLocation != ShellBrowserLocation.Desktop)
+                    of.InitialDirectory = FolderCollection.DesktopView().directories[0];
+
+                if (of.ShowDialog() == DialogResult.OK)
+                {
+                    string chk = dirs[dirs.Length - 1] + "\\" + Path.GetFileName(of.FileName);
+
+                    if (!File.Exists(chk))
+                    {
+                        File.Copy(of.FileName, chk);
+
+                        Knop knop = new Knop();
+                        knop.KnopMaken(AppLink.GetLinkObject(chk));
+                        knop.Margin = new Padding(20);
+                        knop.AppAboutToStart += Knop_AppAboutToStart;
+                        knop.AppStart += Knop_AppStart;
+                        Icons.Controls.Add(knop);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Kan koppeling niet toevoegen: er bestaat al een koppeling op deze locatie met deze naam.", "Kan koppeling niet toevoegen.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        private void mapAanmakenStrip_Click(object sender, EventArgs e)
+        {
+            string input = Interaction.InputBox($"Voer de naam in voor de te maken map.", "Voer de nieuwe naam in.", "Nieuwe bestandsmap");
+
+            if (!string.IsNullOrWhiteSpace(input) && dirs.Length > 0)
+            {
+                string chk = dirs[dirs.Length - 1] + "\\" + input;
+
+                if (!Directory.Exists(chk))
+                {
+                    Directory.CreateDirectory(chk);
+
+                    Knop knop = new Knop();
+                    knop.KnopMaken(AppLink.GetLinkObject(chk));
+                    knop.Margin = new Padding(20);
+                    knop.AppAboutToStart += Knop_AppAboutToStart;
+                    knop.AppStart += Knop_AppStart;
+                    Icons.Controls.Add(knop);
+                }
+                else
+                {
+                    MessageBox.Show("De map kan niet aangemaakt worden, omdat deze map al bestaat.", "Kan map niet aanmaken.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 

@@ -28,12 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.searchFunction = new System.ComponentModel.BackgroundWorker();
             this.help = new System.Windows.Forms.Label();
             this.items = new System.Windows.Forms.ListView();
             this.naamKop = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.padKop = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.resultStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bestandslocatieOpenenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.alternatiefStartenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitButton = new System.Windows.Forms.Button();
             this.searchBox = new PWS_Shell.SearchBox();
+            this.resultStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // searchFunction
@@ -62,6 +70,7 @@
             this.items.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.naamKop,
             this.padKop});
+            this.items.ContextMenuStrip = this.resultStrip;
             this.items.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.items.ForeColor = System.Drawing.Color.White;
             this.items.FullRowSelect = true;
@@ -73,6 +82,7 @@
             this.items.TabIndex = 3;
             this.items.UseCompatibleStateImageBehavior = false;
             this.items.View = System.Windows.Forms.View.Details;
+            this.items.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.items_MouseDoubleClick);
             // 
             // naamKop
             // 
@@ -82,6 +92,62 @@
             // padKop
             // 
             this.padKop.Text = "Pad";
+            // 
+            // resultStrip
+            // 
+            this.resultStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openenToolStripMenuItem,
+            this.bestandslocatieOpenenToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.alternatiefStartenToolStripMenuItem});
+            this.resultStrip.Name = "resultStrip";
+            this.resultStrip.Size = new System.Drawing.Size(200, 98);
+            this.resultStrip.Opening += new System.ComponentModel.CancelEventHandler(this.resultStrip_Opening);
+            // 
+            // openenToolStripMenuItem
+            // 
+            this.openenToolStripMenuItem.Name = "openenToolStripMenuItem";
+            this.openenToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.openenToolStripMenuItem.Text = "Openen";
+            this.openenToolStripMenuItem.Click += new System.EventHandler(this.openenToolStripMenuItem_Click);
+            // 
+            // bestandslocatieOpenenToolStripMenuItem
+            // 
+            this.bestandslocatieOpenenToolStripMenuItem.Name = "bestandslocatieOpenenToolStripMenuItem";
+            this.bestandslocatieOpenenToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.bestandslocatieOpenenToolStripMenuItem.Text = "Bestandslocatie openen";
+            this.bestandslocatieOpenenToolStripMenuItem.Click += new System.EventHandler(this.bestandslocatieOpenenToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(196, 6);
+            // 
+            // alternatiefStartenToolStripMenuItem
+            // 
+            this.alternatiefStartenToolStripMenuItem.Name = "alternatiefStartenToolStripMenuItem";
+            this.alternatiefStartenToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.alternatiefStartenToolStripMenuItem.Text = "Alternatief starten";
+            this.alternatiefStartenToolStripMenuItem.Click += new System.EventHandler(this.alternatiefStartenToolStripMenuItem_Click);
+            // 
+            // exitButton
+            // 
+            this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.exitButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(75)))));
+            this.exitButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.exitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exitButton.ForeColor = System.Drawing.Color.WhiteSmoke;
+            this.exitButton.Location = new System.Drawing.Point(1009, 0);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(82, 82);
+            this.exitButton.TabIndex = 4;
+            this.exitButton.Text = "X";
+            this.exitButton.UseVisualStyleBackColor = false;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            this.exitButton.MouseDown += new System.Windows.Forms.MouseEventHandler(this.exitButton_MouseDown);
+            this.exitButton.MouseEnter += new System.EventHandler(this.exitButton_MouseEnter);
+            this.exitButton.MouseLeave += new System.EventHandler(this.exitButton_MouseLeave);
             // 
             // searchBox
             // 
@@ -100,6 +166,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Magenta;
             this.ClientSize = new System.Drawing.Size(1091, 670);
+            this.Controls.Add(this.exitButton);
             this.Controls.Add(this.items);
             this.Controls.Add(this.help);
             this.Controls.Add(this.searchBox);
@@ -109,10 +176,10 @@
             this.Name = "SearchControl";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.TransparencyKey = System.Drawing.Color.Magenta;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Leave += new System.EventHandler(this.SearchControl_Leave);
+            this.resultStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,5 +193,11 @@
         private System.Windows.Forms.ListView items;
         private System.Windows.Forms.ColumnHeader naamKop;
         private System.Windows.Forms.ColumnHeader padKop;
+        private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.ContextMenuStrip resultStrip;
+        private System.Windows.Forms.ToolStripMenuItem openenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bestandslocatieOpenenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem alternatiefStartenToolStripMenuItem;
     }
 }

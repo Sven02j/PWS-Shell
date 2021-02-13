@@ -16,6 +16,11 @@
         {
             return new AppLink(LinkType.Normal, srcFile);
         }
+
+        internal void SetLinkData(string data)
+        {
+            linkData = data;
+        }
     }
 
     enum LinkType
